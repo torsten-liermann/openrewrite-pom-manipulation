@@ -4,7 +4,6 @@ name: MigrateEAPDependencies
 displayName: Migrate EAP 7.4/EE8 Dependencies to EAP 8.0/EE10
 description: Updates EAP BOM coordinates and migrates EE8 artifacts to EE10 based on those changes. Also removes outdated dependencies.
 recipeList:
-  # BOM-Koordinaten anpassen (GroupId bleibt gleich, ArtifactId ändert sich):
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.bom
       oldArtifactId: jboss-eap-jakartaee8
@@ -17,7 +16,6 @@ recipeList:
       newArtifactId: jboss-eap-ee-with-tools
       newVersion: 8.0.4.GA-redhat-00006
 
-# Removing outdated dependencies (no changes to the "remove" entries):
   - org.openrewrite.maven.RemoveManagedDependency:
       groupId: org.wildfly
       artifactId: wildfly-ejb-client-legacy-bom
@@ -34,8 +32,6 @@ recipeList:
       groupId: org.jboss.bom
       artifactId: eap-runtime-artifacts
 
-
-# Migration from EE8 to EE10 (in all of the following, both the GroupId and ArtifactId change):
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: javax.jws
       oldArtifactId: jsr181-api
@@ -65,10 +61,7 @@ recipeList:
       oldArtifactId: jboss-jaspi-api_1.0_spec
       newGroupId: jakarta.authentication
       newArtifactId: jakarta.authentication-api
-
-  - org.openrewrite.maven.RemoveRedundantDependencyVersions:
-      groupPattern: jakarta.authentication
-      artifactPattern: jakarta.authentication-api
+      newVersion: ""
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.security.jacc
@@ -189,6 +182,7 @@ recipeList:
       oldGroupId: org.jboss.narayana.xts
       oldArtifactId: jbossxts
       newArtifactId: jbossxts-jakarta
+      newVersion: 5.13.1.Final
 
   - org.openrewrite.maven.ChangeDependencyClassifier:
       groupId: org.jboss.narayana.xts
