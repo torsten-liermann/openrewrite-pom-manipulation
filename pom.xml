@@ -6,6 +6,7 @@
   <groupId>com.example</groupId>
   <artifactId>rewrite-eap10-migration-test</artifactId>
   <version>1.0.0</version>
+  <packaging>pom</packaging>
 
   <repositories>
     <repository>
@@ -208,5 +209,9 @@
     </dependency>
 
   </dependencies>
+  <modules>
+    <module>module-01</module>
+    <module>module-02</module>
+  </modules>
 </project>
 
