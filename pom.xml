@@ -204,6 +204,29 @@
     </dependency>
 
     <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate.validator</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>6.0.22.Final-redhat-00001</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-ehcache</artifactId>
+	<version>5.3.24.Final-redhat-00001</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.narayana.xts</groupId>
+      <artifactId>jbossxts-jakarta</artifactId>
+      <version>5.13.1.Final</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.jboss.narayana.xts</groupId>
       <artifactId>jbossxts</artifactId>
     </dependency>
