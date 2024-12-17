@@ -195,5 +195,31 @@ recipeList:
       newGroupId: org.hibernate.orm
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.hibernate
+      oldArtifactId: hibernate-envers
+      newGroupId: org.hibernate.orm
+      newVersion: ""
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: org.hibernate
       oldArtifactId: hibernate-jpamodelgen
       newGroupId: org.hibernate.orm
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: org.hibernate
+      oldArtifactId: hibernate-ehcache
+      newGroupId: org.hibernate
+      newArtifactId: hibernate-jcache
+      newVersion: "6.1.7.Final"
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: org.hibernate
+      oldArtifactId: hibernate-entitymanager
+      newGroupId: org.hibernate.orm
+      newArtifactId: hibernate-core
+      newVersion: ""
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+      groupId: org.hibernate.validator
+      artifactId: hibernate-validator
+      newVersion: "8.0.1.Final-redhat-00001"
+
+
+  - org.openrewrite.maven.RemoveRedundantDependencyVersions:
+      groupPattern: org.hibernate.validator
+      artifactPattern: hibernate-validator
