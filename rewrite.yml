@@ -36,6 +36,11 @@ recipeList:
       artifactId: eap-runtime-artifacts
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: jakarta.platform
+      oldArtifactId: jakarta.jakartaee-bom
+      newVersion: 10.0.0
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: javax.jws
       oldArtifactId: jsr181-api
       newArtifactId: jboss-jakarta-xml-ws-api_4.0_spec
@@ -207,6 +212,8 @@ recipeList:
       newGroupId: org.hibernate.orm
       newVersion: ""
 
+
+
 # Instead of continuing to rely on specific vendor APIs,
 # Hibernate has increasingly adopted the JCache standard since version 5.x.
 # This allows various cache implementations—including Ehcache 3.x—
@@ -233,6 +240,66 @@ recipeList:
       groupId: org.hibernate.validator
       artifactId: hibernate-validator
       newVersion: "8.0.1.Final-redhat-00001"
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.servlet
+      oldArtifactId: javax.servlet-api
+      newGroupId: jakarta.servlet
+      newArtifactId: jakarta.servlet-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.ws.rs
+      oldArtifactId: javax.ws.rs-api
+      newGroupId: jakarta.ws.rs
+      newArtifactId: jakarta.ws.rs-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.persistence
+      oldArtifactId: javax.persistence-api
+      newGroupId: jakarta.persistence
+      newArtifactId: jakarta.persistence-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.inject
+      oldArtifactId: javax.inject
+      newGroupId: jakarta.inject
+      newArtifactId: jakarta.inject-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.enterprise
+      oldArtifactId: cdi-api
+      newGroupId: jakarta.enterprise.cdi
+      newArtifactId: jakarta.cdi-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.validation
+      oldArtifactId: validation-api
+      newGroupId: jakarta.validation
+      newArtifactId: jakarta.validation-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.interceptor
+      oldArtifactId: javax.interceptor-api
+      newGroupId: jakarta.interceptor
+      newArtifactId: jakarta.interceptor-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.mail
+      oldArtifactId: mail
+      newGroupId: jakarta.mail
+      newArtifactId: jakarta.mail-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.json
+      oldArtifactId: javax.json-api
+      newGroupId: jakarta.json
+      newArtifactId: jakarta.json-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.json.bind
+      oldArtifactId: javax.json.bind-api
+      newGroupId: jakarta.json.bind
+      newArtifactId: jakarta.json.bind-api
 
   - org.openrewrite.maven.RemoveRedundantDependencyVersions:
       groupPattern: "*"
