@@ -1,4 +1,7 @@
 ---
+# This OpenRewrite recipe migrates `pom.xml` files from EAP 7.x to EAP 8.x as outlined here:
+# https://docs.redhat.com/en/documentation/red_hat_jboss_enterprise_application_platform/8.0/html/migration_guide/migrate-a-jboss-eap-application-s-maven-project-to-jboss-eap-8-0_default#migrate-a-jboss-eap-application-s-maven-project-to-jboss-eap-8-0_default
+# and others, such as Hibernate.
 type: specs.openrewrite.org/v1beta/recipe
 name: MigrateEAPDependencies
 displayName: Migrate EAP 7.4/EE8 Dependencies to EAP 8.0/EE10
@@ -177,7 +180,6 @@ recipeList:
       newGroupId: org.jboss.spec.jakarta.xml.soap
       newArtifactId: jboss-saaj-api_3.0_spec
 
-# Here, too, only the ArtifactId changes (the GroupId remains the same), so omit newGroupId:
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.narayana.xts
       oldArtifactId: jbossxts
@@ -193,6 +195,7 @@ recipeList:
       oldGroupId: org.hibernate
       oldArtifactId: hibernate-core
       newGroupId: org.hibernate.orm
+      newVersion: ""
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.hibernate
       oldArtifactId: hibernate-envers
@@ -202,12 +205,24 @@ recipeList:
       oldGroupId: org.hibernate
       oldArtifactId: hibernate-jpamodelgen
       newGroupId: org.hibernate.orm
+      newVersion: ""
+
+# Instead of continuing to rely on specific vendor APIs,
+# Hibernate has increasingly adopted the JCache standard since version 5.x.
+# This allows various cache implementations—including Ehcache 3.x—
+# to be integrated via JCache adapter layers.
+#
+# If you want to use Ehcache 3, you now do so by using `hibernate-jcache`
+# and binding Ehcache 3.x as the underlying JCache provider.
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.hibernate
       oldArtifactId: hibernate-ehcache
       newGroupId: org.hibernate
       newArtifactId: hibernate-jcache
       newVersion: "6.1.7.Final"
+
+# The component `hibernate-entitymanager` has been moved to the core project `hibernate-core`.
+# Existing versions are not relevant because `hibernate-core` is included in the EAP dependency management.
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.hibernate
       oldArtifactId: hibernate-entitymanager
@@ -219,7 +234,9 @@ recipeList:
       artifactId: hibernate-validator
       newVersion: "8.0.1.Final-redhat-00001"
 
-
   - org.openrewrite.maven.RemoveRedundantDependencyVersions:
-      groupPattern: org.hibernate.validator
-      artifactPattern: hibernate-validator
+      groupPattern: "*"
+      artifactPattern: "*"
+
+# Merging libraries during migration results in duplicate dependencies, which, if not resolved, cause maven warnings.
+  - org.openrewrite.maven.RemoveDuplicateDependencies
