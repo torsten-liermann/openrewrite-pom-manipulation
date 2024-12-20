@@ -34,6 +34,11 @@ recipeList:
   - org.openrewrite.maven.RemoveManagedDependency:
       groupId: org.jboss.bom
       artifactId: eap-runtime-artifacts
+
+  - org.openrewrite.maven.RemoveManagedDependency:
+      groupId: org.hibernate
+      artifactId: hibernate-core
+
   - org.openrewrite.maven.RemoveManagedDependency:
       groupId: org.hibernate
       artifactId: hibernate-entitymanager
