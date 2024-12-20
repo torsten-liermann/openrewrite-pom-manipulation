@@ -35,6 +35,60 @@ recipeList:
       groupId: org.jboss.bom
       artifactId: eap-runtime-artifacts
 
+# If possible, remove `javax` dependencies from the management section. A BOM should be used or created if necessary.
+  - org.openrewrite.maven.RemoveManagedDependency:
+      groupId: javax.activation
+      artifactId: javax.activation-api
+  - org.openrewrite.maven.RemoveManagedDependency:
+      groupId: javax.annotation
+      artifactId: javax.annotation-api
+  - org.openrewrite.maven.RemoveManagedDependency:
+      groupId: javax.el
+      artifactId: javax.el-api
+  - org.openrewrite.maven.RemoveManagedDependency:
+      groupId: javax.interceptor
+      artifactId: javax.interceptor-api
+  - org.openrewrite.maven.RemoveManagedDependency:
+      groupId: javax.mail
+      artifactId: javax.mail-api
+  - org.openrewrite.maven.RemoveManagedDependency:
+      groupId: javax.persistence
+      artifactId: javax.persistence-api
+  - org.openrewrite.maven.RemoveManagedDependency:
+      groupId: javax.servlet
+      artifactId: javax.servlet-api
+  - org.openrewrite.maven.RemoveManagedDependency:
+      groupId: javax.servlet.jsp
+      artifactId: javax.servlet.jsp-api
+  - org.openrewrite.maven.RemoveManagedDependency:
+      groupId: javax.websocket
+      artifactId: javax.websocket-api
+  - org.openrewrite.maven.RemoveManagedDependency:
+      groupId: javax.ws.rs
+      artifactId: javax.ws.rs-api
+  - org.openrewrite.maven.RemoveManagedDependency:
+      groupId: javax.xml.bind
+      artifactId: javax.xml.bind-api
+  - org.openrewrite.maven.RemoveManagedDependency:
+      groupId: javax.xml.soap
+      artifactId: javax.xml.soap-api
+  - org.openrewrite.maven.RemoveManagedDependency:
+      groupId: javax.xml.ws
+      artifactId: javax.xml.ws-api
+  - org.openrewrite.maven.RemoveManagedDependency:
+      groupId: javax.validation
+      artifactId: validation-api
+  - org.openrewrite.maven.RemoveManagedDependency:
+      groupId: javax.faces
+      artifactId: javax.faces-api
+  - org.openrewrite.maven.RemoveManagedDependency:
+      groupId: javax.faces
+      artifactId: jsf-api
+  - org.openrewrite.maven.RemoveManagedDependency:
+      groupId: javax.faces
+      artifactId: jsf-impl
+ # ---- end
+
   - org.openrewrite.maven.RemoveManagedDependency:
       groupId: org.hibernate
       artifactId: hibernate-core
