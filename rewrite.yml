@@ -35,7 +35,10 @@ recipeList:
       groupId: org.jboss.bom
       artifactId: eap-runtime-artifacts
 
-# If possible, remove `javax` dependencies from the management section. A BOM should be used or created if necessary.
+# When migrating to Jakarta EE 10, it is essential to remove javax artifacts from the dependency management section
+# the pom.xml. These dependencies are now managed through the Bill of Materials (BOM) provided by the
+# Jakarta EE specifications or Red Hat's JBoss Enterprise Application Platform (EAP).
+# This approach ensures consistency and compatibility with Jakarta EE 10 standards.
   - org.openrewrite.maven.RemoveManagedDependency:
       groupId: javax.activation
       artifactId: javax.activation-api
