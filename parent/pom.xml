@@ -19,6 +19,17 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+        <!-- for older red hat products -->
+        <repository>
+            <id>redhat-brew2</id>
+            <url>https://repository.jboss.org/maven2-brew/ </url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
     </repositories>
 
     <dependencyManagement>

@@ -87,6 +87,7 @@ recipeList:
   - org.openrewrite.maven.RemoveManagedDependency:
       groupId: javax.faces
       artifactId: jsf-impl
+
  # ---- end
 
   - org.openrewrite.maven.RemoveManagedDependency:
@@ -356,6 +357,18 @@ recipeList:
       oldArtifactId: javax.json.bind-api
       newGroupId: jakarta.json.bind
       newArtifactId: jakarta.json.bind-api
+
+# In Jakarta EE 10, the jsf-facelets artifact from the
+# com.sun.facelets group is no longer used, as Facelets has been integrated into the core of Jakarta Server Faces (JSF).
+# Therefore, you don't need to include a separate dependency for Facelets in your pom.xml. Instead, ensure that you have
+# the appropriate JSF implementation for Jakarta EE 10. For example, you can include the following dependency:
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: com.sun.facelets
+      oldArtifactId: jsf-facelets
+      newGroupId: org.glassfish
+      newArtifactId: jakarta.faces
+      newVersion: 4.0.0
+      scope: provided
 
   - org.openrewrite.maven.RemoveRedundantDependencyVersions:
       groupPattern: "*"
