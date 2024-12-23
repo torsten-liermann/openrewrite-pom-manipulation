@@ -125,13 +125,13 @@ recipeList:
       newArtifactId: jakarta.activation-api
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
-      oldGroupId: org.jboss.spec.javax.annotation
+      oldGroupId: javax.annotation
       oldArtifactId: javax.annotation-api
       newGroupId: jakarta.annotation
       newArtifactId: jakarta.annotation-api
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
-      oldGroupId: javax.annotation
+      oldGroupId: org.jboss.spec.javax.annotation
       oldArtifactId: jboss-annotations-api_1.3_spec
       newGroupId: jakarta.annotation
       newArtifactId: jakarta.annotation-api
