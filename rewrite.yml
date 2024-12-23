@@ -120,12 +120,18 @@ recipeList:
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: com.sun.activation
-      oldArtifactId: jakarta.activation
+      oldArtifactId: javax.activation
       newGroupId: jakarta.activation
       newArtifactId: jakarta.activation-api
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.annotation
+      oldArtifactId: javax.annotation-api
+      newGroupId: jakarta.annotation
+      newArtifactId: jakarta.annotation-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.annotation
       oldArtifactId: jboss-annotations-api_1.3_spec
       newGroupId: jakarta.annotation
       newArtifactId: jakarta.annotation-api
@@ -135,6 +141,9 @@ recipeList:
       oldArtifactId: jboss-jaspi-api_1.0_spec
       newGroupId: jakarta.authentication
       newArtifactId: jakarta.authentication-api
+      changeManagedDependency: true
+      overrideManagedVersion: false
+      newVersion: "*"
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.security.jacc
@@ -149,8 +158,20 @@ recipeList:
       newArtifactId: jakarta.batch-api
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.batch
+      oldArtifactId: javax.batch-api
+      newGroupId: jakarta.batch
+      newArtifactId: jakarta.batch-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.ejb
       oldArtifactId: jboss-ejb-api_3.2_spec
+      newGroupId: jakarta.ejb
+      newArtifactId: jakarta.ejb-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.ejb
+      oldArtifactId: javax.ejb-api
       newGroupId: jakarta.ejb
       newArtifactId: jakarta.ejb-api
 
@@ -161,6 +182,12 @@ recipeList:
       newArtifactId: jboss-el-api_5.0_spec
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.el
+      oldArtifactId: javax.el-api
+      newGroupId: jakarta.el
+      newArtifactId: jakarta.el-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.enterprise.concurrent
       oldArtifactId: jboss-concurrency-api_1.0_spec
       newGroupId: jakarta.enterprise.concurrent
@@ -169,6 +196,18 @@ recipeList:
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.faces
       oldArtifactId: jboss-jsf-api_2.3_spec
+      newGroupId: jakarta.faces
+      newArtifactId: jakarta.faces-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.faces
+      oldArtifactId: jsf-api
+      newGroupId: jakarta.faces
+      newArtifactId: jakarta.faces-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.faces
+      oldArtifactId: javax.faces-api
       newGroupId: jakarta.faces
       newArtifactId: jakarta.faces-api
 
@@ -186,7 +225,13 @@ recipeList:
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: com.sun.mail
-      oldArtifactId: jakarta.mail
+      oldArtifactId: javax.mail
+      newGroupId: jakarta.mail
+      newArtifactId: jakarta.mail-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.mail
+      oldArtifactId: javax.mail-api
       newGroupId: jakarta.mail
       newArtifactId: jakarta.mail-api
 
@@ -209,6 +254,12 @@ recipeList:
       newArtifactId: jakarta.servlet.jsp-api
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.servlet.jsp
+      oldArtifactId: javax.servlet.jsp-api
+      newGroupId: jakarta.servlet.jsp
+      newArtifactId: jakarta.servlet.jsp-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.apache.taglibs
       oldArtifactId: taglibs-standard-spec
       newGroupId: jakarta.servlet.jsp.jstl
@@ -227,14 +278,32 @@ recipeList:
       newArtifactId: jakarta.xml.bind-api
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.xml.bind
+      oldArtifactId: javax.xml.bind-api
+      newGroupId: jakarta.xml.bind
+      newArtifactId: jakarta.xml.bind-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.xml.ws
       oldArtifactId: jboss-jaxws-api_2.3_spec
       newGroupId: org.jboss.spec.jakarta.xml.ws
       newArtifactId: jboss-jakarta-xml-ws-api_4.0_spec
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.xml.ws
+      oldArtifactId: javax.xml.ws-api
+      newGroupId: jakarta.xml.ws
+      newArtifactId: jakarta.xml.ws-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.websocket
       oldArtifactId: jboss-websocket-api_1.1_spec
+      newGroupId: jakarta.websocket
+      newArtifactId: jakarta.websocket-api
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.websocket
+      oldArtifactId: javax.websocket-api
       newGroupId: jakarta.websocket
       newArtifactId: jakarta.websocket-api
 
@@ -249,6 +318,12 @@ recipeList:
       oldArtifactId: jboss-saaj-api_1.4_spec
       newGroupId: org.jboss.spec.jakarta.xml.soap
       newArtifactId: jboss-saaj-api_3.0_spec
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.xml.soap
+      oldArtifactId: javax.xml.soap-api
+      newGroupId: jakarta.xml.soap
+      newArtifactId: jakarta.xml.soap-api
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.narayana.xts
@@ -284,9 +359,9 @@ recipeList:
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.hibernate
       oldArtifactId: hibernate-ehcache
-      newGroupId: org.hibernate
+      newGroupId: org.hibernate.orm
       newArtifactId: hibernate-jcache
-      newVersion: "6.1.7.Final"
+      newVersion: "6.1.*"
 
 # The component `hibernate-entitymanager` has been moved to the core project `hibernate-core`.
 # Existing versions are not relevant because `hibernate-core` is included in the EAP dependency management.
@@ -298,7 +373,7 @@ recipeList:
   - org.openrewrite.maven.UpgradeDependencyVersion:
       groupId: org.hibernate.validator
       artifactId: hibernate-validator
-      newVersion: "8.0.1.Final-redhat-00001"
+      newVersion: "8.0.*"
 
 # -------------------------------------------------------------------------------------
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
@@ -373,9 +448,18 @@ recipeList:
       newVersion: 4.0.0
       scope: provided
 
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.faces
+      oldArtifactId: jsf-impl
+      newGroupId: org.glassfish
+      newArtifactId: jakarta.faces
+      newVersion: 4.0.0
+      scope: provided
+
   - org.openrewrite.maven.RemoveRedundantDependencyVersions:
       groupPattern: "*"
       artifactPattern: "*"
+      onlyIfManagedVersionIs: "ANY"
 
 # Merging libraries during migration results in duplicate dependencies, which, if not resolved, cause maven warnings.
   - org.openrewrite.maven.RemoveDuplicateDependencies
