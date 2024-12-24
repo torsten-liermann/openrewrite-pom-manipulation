@@ -374,6 +374,17 @@ recipeList:
       groupId: org.hibernate.validator
       artifactId: hibernate-validator
       newVersion: "8.0.*"
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: org.hibernate
+      oldArtifactId: hibernate-search
+      newGroupId: org.hibernate.search
+      newArtifactId: hibernate-search-mapper-orm-orm6
+      newVersion: "6.2.*"
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: org.hibernate
+      oldArtifactId: hibernate-search-engine
+      newGroupId: org.hibernate.search
+      newVersion: "6.2.*"
 
 # -------------------------------------------------------------------------------------
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
