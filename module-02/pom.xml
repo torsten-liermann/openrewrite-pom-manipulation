@@ -26,7 +26,7 @@
 
         <dependency>
             <groupId>com.sun.activation</groupId>
-            <artifactId>jakarta.activation</artifactId>
+            <artifactId>javax.activation</artifactId>
         </dependency>
 
         <dependency>
@@ -82,7 +82,7 @@
 
         <dependency>
             <groupId>com.sun.mail</groupId>
-            <artifactId>jakarta.mail</artifactId>
+            <artifactId>javax.mail</artifactId>
         </dependency>
 
         <dependency>
