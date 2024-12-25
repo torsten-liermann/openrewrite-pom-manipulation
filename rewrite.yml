@@ -228,12 +228,14 @@ recipeList:
       oldArtifactId: javax.mail
       newGroupId: jakarta.mail
       newArtifactId: jakarta.mail-api
+      newVersion: "2.1.*"
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: javax.mail
       oldArtifactId: javax.mail-api
       newGroupId: jakarta.mail
       newArtifactId: jakarta.mail-api
+      newVersion: "2.1.*"
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.resource
@@ -385,6 +387,10 @@ recipeList:
       oldArtifactId: hibernate-search-engine
       newGroupId: org.hibernate.search
       newVersion: "6.2.*"
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+      groupId: org.hibernate
+      artifactId: hibernate-c3p0
+      newVersion: "6.2.*"
 
 # -------------------------------------------------------------------------------------
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
@@ -434,6 +440,7 @@ recipeList:
       oldArtifactId: mail
       newGroupId: jakarta.mail
       newArtifactId: jakarta.mail-api
+      newVersion: "2.1.*"
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: javax.json
