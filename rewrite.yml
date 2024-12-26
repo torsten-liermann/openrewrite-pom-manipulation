@@ -3,8 +3,8 @@
 # https://docs.redhat.com/en/documentation/red_hat_jboss_enterprise_application_platform/8.0/html/migration_guide/migrate-a-jboss-eap-application-s-maven-project-to-jboss-eap-8-0_default#migrate-a-jboss-eap-application-s-maven-project-to-jboss-eap-8-0_default
 # and others, such as Hibernate.
 type: specs.openrewrite.org/v1beta/recipe
-name: MigrateEAPDependencies
-displayName: Migrate EAP 7.4/EE8 Dependencies to EAP 8.0/EE10
+name: EAP80
+displayName: Migrate EAP 7.4/EE8 Dependencies and more to EAP 8.0/EE10
 description: Updates EAP BOM coordinates and migrates EE8 artifacts to EE10 based on those changes. Also removes outdated dependencies.
 recipeList:
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
@@ -285,6 +285,12 @@ recipeList:
       newGroupId: jakarta.xml.bind
       newArtifactId: jakarta.xml.bind-api
 
+#  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+#      oldGroupId: javax.xml.bind
+#      oldArtifactId: jsr173_api
+#      newGroupId: jakarta.xml.bind
+#      newArtifactId: jakarta.xml.bind-api
+
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.xml.ws
       oldArtifactId: jboss-jaxws-api_2.3_spec
@@ -473,6 +479,13 @@ recipeList:
       newArtifactId: jakarta.faces
       newVersion: 4.0.0
       scope: provided
+
+  - org.openrewrite.java.migrate.jakarta.JakartaEE10
+ # - org.openrewrite.java.migrate.jakarta.JavaxXmlWsMigrationToJakartaXmlWs
+ # - org.openrewrite.java.migrate.jakarta.MigrateRestAssuredFromJavaxToJakarta
+ # - org.openrewrite.java.migrate.jakarta.MigrateXmlnsEntriesInWebXmlFiles
+ # - org.openrewrite.java.migrate.jakarta.MigrateXmlnsEntriesInPersistenceXmlFiles
+ # - org.openrewrite.java.migrate.jakarta.MigrateXmlnsEntriesInBeansXmlFiles
 
   - org.openrewrite.maven.RemoveRedundantDependencyVersions:
       groupPattern: "*"
