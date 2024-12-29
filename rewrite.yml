@@ -19,8 +19,8 @@ recipeList:
       newArtifactId: jboss-eap-ee-with-tools
       newVersion: 8.0.4.GA-redhat-00006
 
-# `org.jboss.spec:jboss-javaee-8.0` is not mentioned in the migration guide.
-#  At this point, we assume the use of the comprehensive BOM from EAP 8.0.
+  # `org.jboss.spec:jboss-javaee-8.0` is not mentioned in the migration guide.
+  #  At this point, we assume the use of the comprehensive BOM from EAP 8.0.
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec
       oldArtifactId: jboss-javaee-8.0
@@ -44,10 +44,10 @@ recipeList:
       groupId: org.jboss.bom
       artifactId: eap-runtime-artifacts
 
-# When migrating to Jakarta EE 10, it is essential to remove javax artifacts from the dependency management section
-# the pom.xml. These dependencies are now managed through the Bill of Materials (BOM) provided by the
-# Jakarta EE specifications or Red Hat's JBoss Enterprise Application Platform (EAP).
-# This approach ensures consistency and compatibility with Jakarta EE 10 standards.
+  # When migrating to Jakarta EE 10, it is essential to remove javax artifacts from the dependency management section
+  # the pom.xml. These dependencies are now managed through the Bill of Materials (BOM) provided by the
+  # Jakarta EE specifications or Red Hat's JBoss Enterprise Application Platform (EAP).
+  # This approach ensures consistency and compatibility with Jakarta EE 10 standards.
   - org.openrewrite.maven.RemoveManagedDependency:
       groupId: javax.activation
       artifactId: javax.activation-api
@@ -100,7 +100,7 @@ recipeList:
       groupId: javax.faces
       artifactId: jsf-impl
 
- # ---- end
+  # ---- end
 
   - org.openrewrite.maven.RemoveManagedDependency:
       groupId: org.hibernate
@@ -294,11 +294,11 @@ recipeList:
       newGroupId: jakarta.xml.bind
       newArtifactId: jakarta.xml.bind-api
 
-#  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
-#      oldGroupId: javax.xml.bind
-#      oldArtifactId: jsr173_api
-#      newGroupId: jakarta.xml.bind
-#      newArtifactId: jakarta.xml.bind-api
+  #  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+  #      oldGroupId: javax.xml.bind
+  #      oldArtifactId: jsr173_api
+  #      newGroupId: jakarta.xml.bind
+  #      newArtifactId: jakarta.xml.bind-api
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.xml.ws
@@ -366,13 +366,13 @@ recipeList:
       oldArtifactId: hibernate-jpamodelgen
       newGroupId: org.hibernate.orm
 
-# Instead of continuing to rely on specific vendor APIs,
-# Hibernate has increasingly adopted the JCache standard since version 5.x.
-# This allows various cache implementations—including Ehcache 3.x—
-# to be integrated via JCache adapter layers.
-#
-# If you want to use Ehcache 3, you now do so by using `hibernate-jcache`
-# and binding Ehcache 3.x as the underlying JCache provider.
+  # Instead of continuing to rely on specific vendor APIs,
+  # Hibernate has increasingly adopted the JCache standard since version 5.x.
+  # This allows various cache implementations—including Ehcache 3.x—
+  # to be integrated via JCache adapter layers.
+  #
+  # If you want to use Ehcache 3, you now do so by using `hibernate-jcache`
+  # and binding Ehcache 3.x as the underlying JCache provider.
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.hibernate
       oldArtifactId: hibernate-ehcache
@@ -380,8 +380,8 @@ recipeList:
       newArtifactId: hibernate-jcache
       newVersion: "6.1.*"
 
-# The component `hibernate-entitymanager` has been moved to the core project `hibernate-core`.
-# Existing versions are not relevant because `hibernate-core` is included in the EAP dependency management.
+  # The component `hibernate-entitymanager` has been moved to the core project `hibernate-core`.
+  # Existing versions are not relevant because `hibernate-core` is included in the EAP dependency management.
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.hibernate
       oldArtifactId: hibernate-entitymanager
@@ -407,7 +407,7 @@ recipeList:
       artifactId: hibernate-c3p0
       newVersion: "6.2.*"
 
-# -------------------------------------------------------------------------------------
+  # -------------------------------------------------------------------------------------
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: javax.servlet
       oldArtifactId: javax.servlet-api
@@ -469,10 +469,10 @@ recipeList:
       newGroupId: jakarta.json.bind
       newArtifactId: jakarta.json.bind-api
 
-# In Jakarta EE 10, the jsf-facelets artifact from the
-# com.sun.facelets group is no longer used, as Facelets has been integrated into the core of Jakarta Server Faces (JSF).
-# Therefore, you don't need to include a separate dependency for Facelets in your pom.xml. Instead, ensure that you have
-# the appropriate JSF implementation for Jakarta EE 10. For example, you can include the following dependency:
+  # In Jakarta EE 10, the jsf-facelets artifact from the
+  # com.sun.facelets group is no longer used, as Facelets has been integrated into the core of Jakarta Server Faces (JSF).
+  # Therefore, you don't need to include a separate dependency for Facelets in your pom.xml. Instead, ensure that you have
+  # the appropriate JSF implementation for Jakarta EE 10. For example, you can include the following dependency:
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: com.sun.facelets
       oldArtifactId: jsf-facelets
@@ -489,6 +489,12 @@ recipeList:
       newVersion: 4.0.0
       scope: provided
 
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+      groupId: org.jboss.weld
+      artifactId: weld-junit-parent
+      newVersion: 4.0.x
+      scope: provided
+
   - org.openrewrite.java.migrate.jakarta.JakartaEE10
   - org.openrewrite.hibernate.MigrateToHibernate62
 
@@ -497,5 +503,5 @@ recipeList:
       artifactPattern: "*"
       onlyIfManagedVersionIs: "ANY"
 
-# Merging libraries during migration results in duplicate dependencies, which, if not resolved, cause maven warnings.
+  # Merging libraries during migration results in duplicate dependencies, which, if not resolved, cause maven warnings.
   - org.openrewrite.maven.RemoveDuplicateDependencies
