@@ -13,7 +13,7 @@ demonstrates how little the ChatGPT O1 Pro model helps in creating the required 
 
 Maven is called from the command line as follows:  
 `mvnw org.openrewrite.maven:rewrite-maven-plugin:LATEST:run -Drewrite.configLocation=./rewrite.yml
--Drewrite.activeRecipes=MigrateEAPDependencies
+-Drewrite.activeRecipes=EAP80
 "LATEST" is currently version 5.47.0.
 
 The `JakartaEE10` recipe has been added because running the `EAP80` recipe alone is not practical. Individual runs of
