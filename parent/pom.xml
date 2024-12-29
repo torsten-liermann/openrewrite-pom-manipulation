@@ -68,6 +68,14 @@
 
             <dependency>
                 <groupId>org.jboss.spec</groupId>
+                <artifactId>jboss-javaee-8.0</artifactId>
+                <version>1.0.1.Final-redhat-00001</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.spec</groupId>
                 <artifactId>jboss-jakartaee-web-8.0</artifactId>
                 <version>1.0.1.Final-redhat-00008</version>
                 <type>pom</type>
@@ -236,6 +244,7 @@
 
         </dependencies>
     </dependencyManagement>
+
 
 </project>
 
