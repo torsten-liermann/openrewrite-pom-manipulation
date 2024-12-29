@@ -391,6 +391,10 @@ recipeList:
       groupId: org.hibernate.validator
       artifactId: hibernate-validator
       newVersion: "8.0.*"
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+      groupId: org.hibernate
+      artifactId: hibernate-validator-annotation-processor
+      newVersion: "8.0.*"
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.hibernate
       oldArtifactId: hibernate-search

@@ -277,6 +277,12 @@
             <artifactId>hibernate-c3p0</artifactId>
             <version>5.3.25.Final</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator-annotation-processor</artifactId>
+            <version>5.3.5.Final-redhat-2</version>
+        </dependency>
     </dependencies>
 </project>
 
