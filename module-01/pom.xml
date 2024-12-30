@@ -16,6 +16,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.jaxb-plugin>0.15.3</version.jaxb-plugin>
     </properties>
 
     <dependencies>
@@ -321,5 +322,15 @@
             <version>${version.spring}</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>${version.jaxb-plugin}</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
 

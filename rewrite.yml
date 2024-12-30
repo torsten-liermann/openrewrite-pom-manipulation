@@ -511,6 +511,7 @@ recipeList:
   - org.openrewrite.hibernate.MigrateToHibernate62
   - UpgradeSpringFramework_6_2
   - SpringBatch4To5_2Migration
+  - MigrateJaxBPlugins
 
   - org.openrewrite.maven.RemoveRedundantDependencyVersions:
       groupPattern: "*"
@@ -544,3 +545,19 @@ recipeList:
       groupId: org.springframework.batch
       artifactId: "*"
       newVersion: 5.2.x
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: MigrateJaxBPlugins
+displayName: Migrate JaxB maven plugins
+description: Migrate JaxB maven plugins org.jvnet.jaxb2.maven2:0.15.3
+recipeList:
+  - org.openrewrite.maven.ChangePluginGroupIdAndArtifactId:
+      oldGroupId: org.jvnet.jaxb2.maven2
+      oldArtifactId: maven-jaxb2-plugin
+      newGroupId: org.jvnet.jaxb
+      newArtifactId: jaxb-maven-plugin
+  - org.openrewrite.maven.UpgradePluginVersion:
+      groupId: org.jvnet.jaxb
+      artifactId: jaxb-maven-plugin
+      newVersion: 4.0.x
