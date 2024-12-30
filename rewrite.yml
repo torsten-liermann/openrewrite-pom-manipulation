@@ -509,6 +509,8 @@ recipeList:
 
   - org.openrewrite.java.migrate.jakarta.JakartaEE10
   - org.openrewrite.hibernate.MigrateToHibernate62
+  - UpgradeSpringFramework_6_2
+  - SpringBatch4To5_2Migration
 
   - org.openrewrite.maven.RemoveRedundantDependencyVersions:
       groupPattern: "*"
@@ -519,18 +521,18 @@ recipeList:
   - org.openrewrite.maven.RemoveDuplicateDependencies
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: org.openrewrite.java.spring.framework.UpgradeSpringFramework_6_2
+name: UpgradeSpringFramework_6_2
 displayName: Migrate to Spring Framework 6.2
 description: Migrate applications to the latest Spring Framework 6.2 release.
 recipeList:
   - org.openrewrite.java.spring.framework.UpgradeSpringFramework_6_1
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: org.springframework
-      artifactId: *
+      artifactId: "*"
       newVersion: 6.2.x
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: org.openrewrite.java.spring.batch.SpringBatch4To5_2Migration
+name: SpringBatch4To5_2Migration
 displayName: Migrate to Spring Batch 5.0 from 4.3
 description: Migrate applications built on Spring Batch 4.3 to the latest Spring Batch 5.2 release.
 tags:
@@ -540,5 +542,5 @@ recipeList:
   - org.openrewrite.java.spring.batch.SpringBatch4To5Migration
   - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
       groupId: org.springframework.batch
-      artifactId: *
+      artifactId: "*"
       newVersion: 5.2.x
