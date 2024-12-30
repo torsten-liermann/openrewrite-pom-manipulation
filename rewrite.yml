@@ -197,6 +197,13 @@ recipeList:
       newArtifactId: jakarta.el-api
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: org.glassfish
+      oldArtifactId: jakarta.el
+      newGroupId: org.jboss.spec.jakarta.el
+      newArtifactId: jboss-el-api_5.0_spec
+      newVersion: "*"
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.enterprise.concurrent
       oldArtifactId: jboss-concurrency-api_1.0_spec
       newGroupId: jakarta.enterprise.concurrent
