@@ -512,6 +512,8 @@ recipeList:
   - UpgradeSpringFramework_6_2
   - SpringBatch4To5_2Migration
   - MigrateJaxBPlugins
+  - MigrateJaxBSchemaDefinitions
+  - MigrateJaxbBindingDefinitions
 
   - org.openrewrite.maven.RemoveRedundantDependencyVersions:
       groupPattern: "*"
@@ -549,8 +551,13 @@ recipeList:
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: MigrateJaxBPlugins
-displayName: Migrate JaxB maven plugins
-description: Migrate JaxB maven plugins org.jvnet.jaxb2.maven2:0.15.3
+displayName: Migrate JAXB Maven Plugins to Jakarta EE 10
+description: >-
+  This recipe updates the JAXB Maven plugin from 'org.jvnet.jaxb2.maven2:maven-jaxb2-plugin' to 'org.jvnet.jaxb:jaxb-maven-plugin'
+  and upgrades its version to '4.0.x' for compatibility with Jakarta EE 10.
+preconditions:
+  - org.openrewrite.xml.search.FindTags:
+      xPath: //build/plugins/plugin[groupId='org.jvnet.jaxb2.maven2' and artifactId='maven-jaxb2-plugin']
 recipeList:
   - org.openrewrite.maven.ChangePluginGroupIdAndArtifactId:
       oldGroupId: org.jvnet.jaxb2.maven2
@@ -561,3 +568,70 @@ recipeList:
       groupId: org.jvnet.jaxb
       artifactId: jaxb-maven-plugin
       newVersion: 4.0.x
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: MigrateJaxBSchemaDefinitions
+displayName: Migrate JAXB Schema Definitions to Jakarta EE 10
+description: >-
+  This recipe updates XML schema files by changing the JAXB namespace
+  to the Jakarta EE 10 namespace and setting the `jaxb:version` attribute to `3.0` for compatibility with Jakarta EE 10.
+preconditions:
+  - org.openrewrite.FindSourceFiles:
+      filePattern: '**/*.xsd'
+recipeList:
+  - org.openrewrite.xml.ChangeTagAttribute:
+      elementName: "/*[local-name()='schema']"
+      attributeName: "xmlns:jaxb"
+      newValue: "https://jakarta.ee/xml/ns/jaxb"
+  - org.openrewrite.xml.ChangeTagAttribute:
+      elementName: "/*[local-name()='schema']"
+      attributeName: "xmlns"
+      oldValue: "http://java.sun.com/xml/ns/jaxb"
+      newValue: "https://jakarta.ee/xml/ns/jaxb"
+  - org.openrewrite.xml.ChangeTagAttribute:
+      elementName: "/*[local-name()='schema']"
+      attributeName: "jaxb:version"
+      newValue: "3.0"
+  - org.openrewrite.xml.ChangeTagAttribute:
+      elementName: "/*[local-name()='schema']"
+      attributeName: "version"
+      newValue: "3.0"
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: MigrateJaxbBindingDefinitions
+displayName: Migrate JAXB Binding Definitions to Jakarta EE 10
+description: >-
+  This recipe updates JAXB binding (`.xjb`) files by changing the JAXB namespace
+  to the Jakarta EE 10 namespace and setting the `version` attribute to `3.0` for compatibility with Jakarta EE 10.
+preconditions:
+  - org.openrewrite.FindSourceFiles:
+      filePattern: '**/*.xjb'
+recipeList:
+  - org.openrewrite.xml.ChangeTagAttribute:
+      elementName: "/*[local-name()='bindings']"
+      attributeName: "xmlns:jaxb"
+      newValue: "https://jakarta.ee/xml/ns/jaxb"
+  - org.openrewrite.xml.ChangeTagAttribute:
+      elementName: "/*[local-name()='bindings']"
+      attributeName: "jaxb:version"
+      newValue: "3.0"
+  - org.openrewrite.xml.ChangeTagAttribute:
+      elementName: "/*[local-name()='bindings']"
+      attributeName: "version"
+      newValue: "3.0"
+  - org.openrewrite.xml.ChangeTagAttribute:
+      elementName: "/*[local-name()='bindings']"
+      attributeName: "xmlns:xjc"
+      newValue: "https://jakarta.ee/xml/ns/jaxb/xjc"
+  - org.openrewrite.xml.ChangeTagAttribute:
+      elementName: "/*[local-name()='bindings']"
+      attributeName: "xsi:schemaLocation"
+      oldValue: "^(.*)http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd(.*)$"
+      newValue: "$1https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd$2"
+      regex: true
+  - org.openrewrite.xml.ChangeTagAttribute:
+      elementName: "/*[local-name()='bindings']"
+      attributeName: "xsi:schemaLocation"
+      oldValue: "^(.*)http://java.sun.com/xml/ns/jaxb(.*)$"
+      newValue: "$1https://jakarta.ee/xml/ns/jaxb$2"
+      regex: true
