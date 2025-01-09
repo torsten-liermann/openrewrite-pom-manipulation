@@ -337,6 +337,12 @@ recipeList:
       newGroupId: jakarta.ws.rs
       newArtifactId: jakarta.ws.rs-api
 
+  - org.openrewrite.maven.AddDependency:
+      artifactId: jboss-jakarta-xml-ws-api_4.0_spec
+      groupId: org.jboss.spec.jakarta.xml.ws
+      version: '*'
+      onlyIfUsing: jakarta.jws.*
+
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.xml.soap
       oldArtifactId: jboss-saaj-api_1.4_spec
@@ -368,6 +374,11 @@ recipeList:
       oldGroupId: org.hibernate
       oldArtifactId: hibernate-envers
       newGroupId: org.hibernate.orm
+  - org.openrewrite.maven.AddDependency:
+      groupId: jakarta.persistence
+      artifactId: jakarta.persistence-api
+      version: '*'
+      onlyIfUsing: jakarta.persistence.*
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.hibernate
       oldArtifactId: hibernate-jpamodelgen
@@ -418,6 +429,12 @@ recipeList:
       groupId: org.hibernate
       artifactId: hibernate-c3p0
       newVersion: "6.2.*"
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: org.hibernate.javax.persistence
+      oldArtifactId: hibernate-jpa-2.1-api
+      newGroupId: jakarta.persistence
+      newArtifactId: jakarta.persistence-api
+      newVersion: "*"
 
   # -------------------------------------------------------------------------------------
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
