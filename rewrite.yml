@@ -216,6 +216,13 @@ recipeList:
       newVersion: 4.0.*
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: org.glassfish
+      oldArtifactId: javax.el
+      newGroupId: org.glassfish
+      newArtifactId: jakarta.el
+      newVersion: 4.0.*
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.enterprise.concurrent
       oldArtifactId: jboss-concurrency-api_1.0_spec
       newGroupId: jakarta.enterprise.concurrent
@@ -331,6 +338,11 @@ recipeList:
       newGroupId: jakarta.xml.bind
       newArtifactId: jakarta.xml.bind-api
       newVersion: 4.0.*
+  
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+      groupId: org.glassfish.jaxb
+      artifactId: jaxb-runtime
+      newVersion: 4.0.*
 
   #  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
   #      oldGroupId: javax.xml.bind
@@ -351,6 +363,11 @@ recipeList:
       newGroupId: jakarta.xml.ws
       newArtifactId: jakarta.xml.ws-api
       newVersion: 3.0.*
+
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+      groupId: com.sun.xml.ws
+      artifactId: jaxws-rt
+      newVersion: 4.0.*
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.websocket
