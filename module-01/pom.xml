@@ -335,6 +335,35 @@
                 <artifactId>maven-jaxb2-plugin</artifactId>
                 <version>${version.jaxb-plugin}</version>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>2.5.0</version>
+                <executions>
+                    <execution>
+                        <id>xjc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <packageName>de.akdb.qsys.qben.autorisierung.verfahrenskatalog.entity</packageName>
+                            <extension>true</extension>
+                            <sources>
+                                <source>${project.basedir}/src/main/resources/verfahrenskatalog.xsd</source>
+                            </sources>
+                            <includeSchemas>
+                                <includeSchema>verfahrenskatalog.xsd</includeSchema>
+                            </includeSchemas>
+                            <strict>true</strict>
+                            <xjbSources>
+                                <xjbSource>${project.basedir}/src/main/resources/bindings-${fabasoft.xsd.version}.xjb</xjbSource>
+                            </xjbSources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 </project>
