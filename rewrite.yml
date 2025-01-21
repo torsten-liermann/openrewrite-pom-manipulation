@@ -120,21 +120,21 @@ recipeList:
       oldArtifactId: jsr181-api
       newArtifactId: jboss-jakarta-xml-ws-api_4.0_spec
       newGroupId: org.jboss.spec.jakarta.xml.ws
-      newVersion: 1.0.0.Final-redhat-00001
+      newVersion: "*"
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.xml.ws
       oldArtifactId: jboss-jaxws-api_2.3_spec
       newArtifactId: jboss-jakarta-xml-ws-api_4.0_spec
       newGroupId: org.jboss.spec.jakarta.xml.ws
-      newVersion: 1.0.0.Final-redhat-00001
+      newVersion: "*"
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: com.sun.activation
       oldArtifactId: javax.activation
       newGroupId: jakarta.activation
       newArtifactId: jakarta.activation-api
-      newVersion: 2.1.*
+      newVersion: "2.1.*"
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: javax.annotation
@@ -355,7 +355,7 @@ recipeList:
       oldArtifactId: jboss-jaxws-api_2.3_spec
       newGroupId: org.jboss.spec.jakarta.xml.ws
       newArtifactId: jboss-jakarta-xml-ws-api_4.0_spec
-      newVersion: 1.0.0.Final-redhat-00001
+      newVersion: "*"
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: javax.xml.ws
@@ -393,7 +393,7 @@ recipeList:
   - org.openrewrite.maven.AddDependency:
       artifactId: jboss-jakarta-xml-ws-api_4.0_spec
       groupId: org.jboss.spec.jakarta.xml.ws
-      version: 1.0.0.Final-redhat-00001
+      version: "*"
       onlyIfUsing: jakarta.jws.*
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
@@ -592,6 +592,13 @@ recipeList:
       newVersion: 4.0.x
       scope: provided
 
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: com.sun.mail
+      oldArtifactId: jakarta.mail
+      newGroupId: org.eclipse.angus
+      newArtifactId: angus-mail
+      newVersion: "2.0.x"
+
   - org.openrewrite.java.migrate.jakarta.JakartaEE10
   - org.openrewrite.hibernate.MigrateToHibernate62
   - UpgradeSpringFramework_6_2
@@ -641,6 +648,7 @@ description: >-
   This recipe updates the JAXB Maven plugins from 'org.jvnet.jaxb2.maven2:maven-jaxb2-plugin' or 
   'org.codehaus.mojo:jaxb2-maven-plugin' to 'org.jvnet.jaxb:jaxb-maven-plugin'
   and upgrades its version to '4.0.x' for compatibility with Jakarta EE 10.
+  https://github.com/mojohaus/jaxb2-maven-plugin - no maven plugin documentation
 recipeList:
   - org.openrewrite.maven.ChangePluginGroupIdAndArtifactId:
       oldGroupId: org.jvnet.jaxb2.maven2
@@ -656,6 +664,7 @@ recipeList:
       elementName: "/project/build/plugins/plugin[groupId='org.jvnet.jaxb' and artifactId='jaxb-maven-plugin']/executions/execution/goals/goal[text()='xjc']"
       oldValue: xjc
       newValue: generate
+
   - org.openrewrite.maven.UpgradePluginVersion:
       groupId: org.jvnet.jaxb
       artifactId: jaxb-maven-plugin
