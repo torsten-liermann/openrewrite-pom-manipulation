@@ -638,17 +638,24 @@ type: specs.openrewrite.org/v1beta/recipe
 name: MigrateJaxBPlugins
 displayName: Migrate JAXB Maven Plugins to Jakarta EE 10
 description: >-
-  This recipe updates the JAXB Maven plugin from 'org.jvnet.jaxb2.maven2:maven-jaxb2-plugin' to 'org.jvnet.jaxb:jaxb-maven-plugin'
+  This recipe updates the JAXB Maven plugins from 'org.jvnet.jaxb2.maven2:maven-jaxb2-plugin' or 
+  'org.codehaus.mojo:jaxb2-maven-plugin' to 'org.jvnet.jaxb:jaxb-maven-plugin'
   and upgrades its version to '4.0.x' for compatibility with Jakarta EE 10.
-preconditions:
-  - org.openrewrite.xml.search.FindTags:
-      xPath: //build/plugins/plugin[groupId='org.jvnet.jaxb2.maven2' and artifactId='maven-jaxb2-plugin']
 recipeList:
   - org.openrewrite.maven.ChangePluginGroupIdAndArtifactId:
       oldGroupId: org.jvnet.jaxb2.maven2
       oldArtifactId: maven-jaxb2-plugin
       newGroupId: org.jvnet.jaxb
       newArtifactId: jaxb-maven-plugin
+  - org.openrewrite.maven.ChangePluginGroupIdAndArtifactId:
+      oldGroupId: org.codehaus.mojo
+      oldArtifactId: jaxb2-maven-plugin
+      newGroupId: org.jvnet.jaxb
+      newArtifactId: jaxb-maven-plugin
+  - org.openrewrite.xml.ChangeTagValue:
+      elementName: "/project/build/plugins/plugin[groupId='org.jvnet.jaxb' and artifactId='jaxb-maven-plugin']/executions/execution/goals/goal[text()='xjc']"
+      oldValue: xjc
+      newValue: generate
   - org.openrewrite.maven.UpgradePluginVersion:
       groupId: org.jvnet.jaxb
       artifactId: jaxb-maven-plugin
