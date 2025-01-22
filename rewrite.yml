@@ -664,11 +664,21 @@ recipeList:
       elementName: "/project/build/plugins/plugin[groupId='org.jvnet.jaxb' and artifactId='jaxb-maven-plugin']/executions/execution/goals/goal[text()='xjc']"
       oldValue: xjc
       newValue: generate
-
   - org.openrewrite.maven.UpgradePluginVersion:
       groupId: org.jvnet.jaxb
       artifactId: jaxb-maven-plugin
       newVersion: 4.0.x
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: org.jvnet.jaxb2_commons
+      oldArtifactId: jaxb2-basics
+      newGroupId: org.jvnet.jaxb
+      newArtifactId: jaxb-plugins
+      newVersion: 4.0.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+      groupId: org.glassfish.jaxb
+      artifactId: jaxb-xjc
+      newVersion: 4.0.x
+
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: MigrateJaxBSchemaDefinitions
