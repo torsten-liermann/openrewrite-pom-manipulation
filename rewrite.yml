@@ -724,10 +724,6 @@ recipeList:
       newValue: "3.0"
   - org.openrewrite.xml.ChangeTagAttribute:
       elementName: "/*[local-name()='bindings']"
-      attributeName: "xmlns:xjc"
-      newValue: "https://jakarta.ee/xml/ns/jaxb/xjc"
-  - org.openrewrite.xml.ChangeTagAttribute:
-      elementName: "/*[local-name()='bindings']"
       attributeName: "xsi:schemaLocation"
       oldValue: "^(.*)http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd(.*)$"
       newValue: "$1https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd$2"
