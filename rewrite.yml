@@ -606,11 +606,11 @@ recipeList:
   - MigrateJaxBPlugins
   - MigrateJaxBSchemaDefinitions
   - MigrateJaxbBindingDefinitions
-
-  - org.openrewrite.maven.RemoveRedundantDependencyVersions:
-      groupPattern: "*"
-      artifactPattern: "*"
-      onlyIfManagedVersionIs: "ANY"
+  - MigrationOfVariousSpecificPlugins
+#  - org.openrewrite.maven.RemoveRedundantDependencyVersions:
+#      groupPattern: "*"
+#      artifactPattern: "*"
+#      onlyIfManagedVersionIs: "ANY"
 
   # Merging libraries during migration results in duplicate dependencies, which, if not resolved, cause maven warnings.
   - org.openrewrite.maven.RemoveDuplicateDependencies
@@ -728,3 +728,25 @@ recipeList:
       oldValue: "^(.*)http://java.sun.com/xml/ns/jaxb(.*)$"
       newValue: "$1https://jakarta.ee/xml/ns/jaxb$2"
       regex: true
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: MigrationOfVariousSpecificPlugins
+displayName: Migration of Various Specific Plugins
+description: >-
+  This recipe facilitates the migration of various specific plugins in a
+  streamlined and efficient manner, ensuring compatibility and reducing technical debt.
+preconditions:
+  - org.openrewrite.FindSourceFiles:
+      filePattern: '**/pom.xml'
+recipeList:
+  - org.openrewrite.maven.RemovePluginDependency:
+      pluginGroupId: '*'
+      pluginArtifactId: ejb-maven-plugin
+      groupId: javax.ejb
+      artifactId: javax.ejb-api
+  - org.openrewrite.maven.RemovePluginDependency:
+      pluginGroupId: '*'
+      pluginArtifactId: ejb-maven-plugin
+      groupId: jakarta.ejb
+      artifactId: jakarta.ejb-api
