@@ -714,10 +714,11 @@ preconditions:
   - org.openrewrite.FindSourceFiles:
       filePattern: '**/*.xjb'
 recipeList:
-  - org.openrewrite.xml.ChangeTagAttribute:
-      elementName: "/*[local-name()='bindings']"
-      attributeName: "xmlns:jaxb"
+  - org.openrewrite.xml.ChangeNamespaceValue:
+      oldValue: "http://java.sun.com/xml/ns/jaxb"
       newValue: "https://jakarta.ee/xml/ns/jaxb"
+      newVersion: "3.0"
+      searchAllNamespaces: true
   - org.openrewrite.xml.ChangeTagAttribute:
       elementName: "/*[local-name()='bindings']"
       attributeName: "jaxb:version"
