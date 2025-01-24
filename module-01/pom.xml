@@ -336,9 +336,9 @@
                 <version>1.0.0</version>
                 <dependencies>
                     <dependency>
-                    <groupId>javax.ejb</groupId>
-                    <artifactId>javax.ejb-api</artifactId>
-                    <version>3.2.2</version>
+                        <groupId>javax.ejb</groupId>
+                        <artifactId>javax.ejb-api</artifactId>
+                        <version>3.2.2</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -381,13 +381,18 @@
                             </includeSchemas>
                             <strict>true</strict>
                             <xjbSources>
-                                <xjbSource>${project.basedir}/src/main/resources/bindings-${fabasoft.xsd.version}.xjb</xjbSource>
+                                <xjbSource>${project.basedir}/src/main/resources/bindings-${fabasoft.xsd.version}.xjb
+                                </xjbSource>
                             </xjbSources>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>animal-sniffer-maven-plugin</artifactId>
+                <version>1.20</version>
+            </plugin>
         </plugins>
     </build>
 </project>
