@@ -738,6 +738,11 @@ recipeList:
       oldValue: "^(.*)http://java.sun.com/xml/ns/jaxb(.*)$"
       newValue: "$1https://jakarta.ee/xml/ns/jaxb$2"
       regex: true
+  - org.openrewrite.xml.ChangeNamespaceValue:
+      oldValue: "https://jakarta.ee/xml/ns/jaxb/xjc"
+      newValue: "http://java.sun.com/xml/ns/jaxb/xjc"
+      newVersion: "3.0"
+      searchAllNamespaces: true
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
