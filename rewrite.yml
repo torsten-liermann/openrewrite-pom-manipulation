@@ -393,7 +393,7 @@ recipeList:
   - org.openrewrite.maven.AddDependency:
       artifactId: jboss-jakarta-xml-ws-api_4.0_spec
       groupId: org.jboss.spec.jakarta.xml.ws
-      version: "*"
+      version: 4.0.*
       onlyIfUsing: jakarta.jws.*
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
@@ -607,13 +607,16 @@ recipeList:
   - MigrateJaxBSchemaDefinitions
   - MigrateJaxbBindingDefinitions
   - MigrationOfVariousSpecificPlugins
+  - AddJakartaXMLBindAPIifMissingByJavaPackage
+  - AddJakartaXMLBindAPIifMissingByJvnetPlugin
+  - AddJakartaXMLBindAPIifMissingByCodehausPlugin
 #  - org.openrewrite.maven.RemoveRedundantDependencyVersions:
 #      groupPattern: "*"
 #      artifactPattern: "*"
 #      onlyIfManagedVersionIs: "ANY"
 
   # Merging libraries during migration results in duplicate dependencies, which, if not resolved, cause maven warnings.
-  - org.openrewrite.maven.RemoveDuplicateDependencies
+#  - org.openrewrite.maven.RemoveDuplicateDependencies
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: UpgradeSpringFramework_6_2
@@ -736,6 +739,43 @@ recipeList:
       newValue: "$1https://jakarta.ee/xml/ns/jaxb$2"
       regex: true
 
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: AddJakartaXMLBindAPIifMissingByJavaPackage
+displayName: Adds the jakarta.xml.bind-api dependency only if it is not already present in the pom.xml file.
+recipeList:
+  - org.openrewrite.maven.AddDependency:
+      groupId: jakarta.xml.bind
+      artifactId: jakarta.xml.bind-api
+      version: 4.0.*
+      onlyIfUsing: "javax.xml.bind.**.*"
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: AddJakartaXMLBindAPIifMissingByCodehausPlugin
+displayName: Adds the jakarta.xml.bind-api dependency only if it is not already present in the pom.xml file.
+preconditions:
+  - org.openrewrite.maven.search.FindPlugin:
+      groupId: org.codehaus.mojo
+      artifactId: jaxb2-maven-plugin
+recipeList:
+  - org.openrewrite.maven.AddDependency:
+      groupId: jakarta.xml.bind
+      artifactId: jakarta.xml.bind-api
+      version: 4.0.*
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: AddJakartaXMLBindAPIifMissingByJvnetPlugin
+displayName: Adds the jakarta.xml.bind-api dependency only if it is not already present in the pom.xml file.
+preconditions:
+  - org.openrewrite.maven.search.FindPlugin:
+      groupId: org.jvnet.jaxb2.maven2
+      artifactId: maven-jaxb2-plugin
+recipeList:
+  - org.openrewrite.maven.AddDependency:
+      groupId: jakarta.xml.bind
+      artifactId: jakarta.xml.bind-api
+      version: 4.0.*
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: MigrationOfVariousSpecificPlugins
