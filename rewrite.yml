@@ -689,9 +689,11 @@ displayName: Migrate JAXB Schema Definitions to Jakarta EE 10
 description: >-
   This recipe updates XML schema files by changing the JAXB namespace
   to the Jakarta EE 10 namespace and setting the `jaxb:version` attribute to `3.0` for compatibility with Jakarta EE 10.
-preconditions:
-  - org.openrewrite.FindSourceFiles:
-      filePattern: '**/*.xsd'
+# Temporarily commenting out this recipe due to an issue with handling parent-child relationships in multi-module Maven projects.
+# For more details, see: https://github.com/openrewrite/rewrite/issues/4948
+#preconditions:
+#  - org.openrewrite.FindSourceFiles:
+#      filePattern: '**/*.xsd'
 recipeList:
   - org.openrewrite.xml.ChangeTagAttribute:
       elementName: "/*[local-name()='schema']"
@@ -713,9 +715,11 @@ displayName: Migrate JAXB Binding Definitions to Jakarta EE 10
 description: >-
   This recipe updates JAXB binding (`.xjb`) files by changing the JAXB namespace
   to the Jakarta EE 10 namespace and setting the `version` attribute to `3.0` for compatibility with Jakarta EE 10.
-preconditions:
-  - org.openrewrite.FindSourceFiles:
-      filePattern: '**/*.xjb'
+# Temporarily commenting out this recipe due to an issue with handling parent-child relationships in multi-module Maven projects.
+# For more details, see: https://github.com/openrewrite/rewrite/issues/4948
+#preconditions:
+#  - org.openrewrite.FindSourceFiles:
+#      filePattern: '**/*.xjb'
 recipeList:
   - org.openrewrite.xml.ChangeNamespaceValue:
       oldValue: "http://java.sun.com/xml/ns/jaxb"
@@ -759,6 +763,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: AddJakartaXMLBindAPIifMissingByCodehausPlugin
 displayName: Adds the jakarta.xml.bind-api dependency only if it is not already present in the pom.xml file.
+# This recipe is currently non-functional due to the issue detailed at: https://github.com/openrewrite/rewrite/issues/4948
 preconditions:
   - org.openrewrite.maven.search.FindPlugin:
       groupId: org.codehaus.mojo
@@ -772,6 +777,7 @@ recipeList:
 type: specs.openrewrite.org/v1beta/recipe
 name: AddJakartaXMLBindAPIifMissingByJvnetPlugin
 displayName: Adds the jakarta.xml.bind-api dependency only if it is not already present in the pom.xml file.
+# This recipe is currently non-functional due to the issue detailed at: https://github.com/openrewrite/rewrite/issues/4948
 preconditions:
   - org.openrewrite.maven.search.FindPlugin:
       groupId: org.jvnet.jaxb2.maven2
@@ -788,9 +794,11 @@ displayName: Migration of Various Specific Plugins
 description: >-
   This recipe facilitates the migration of various specific plugins in a
   streamlined and efficient manner, ensuring compatibility and reducing technical debt.
-preconditions:
-  - org.openrewrite.FindSourceFiles:
-      filePattern: '**/pom.xml'
+# Temporarily commenting out this recipe due to an issue with handling parent-child relationships in multi-module Maven projects.
+# For more details, see: https://github.com/openrewrite/rewrite/issues/4948
+#preconditions:
+#  - org.openrewrite.FindSourceFiles:
+#      filePattern: '**/pom.xml'
 recipeList:
   - org.openrewrite.maven.RemovePluginDependency:
       pluginGroupId: '*'
