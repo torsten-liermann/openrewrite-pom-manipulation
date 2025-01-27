@@ -160,6 +160,15 @@ recipeList:
       newVersion: 3.0.*
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: jakarta.authorization
+      oldArtifactId: jboss-jaspi-api_1.0_spec
+      newGroupId: jakarta.authentication
+      newArtifactId: jakarta.authorization-api
+      changeManagedDependency: true
+      overrideManagedVersion: false
+      newVersion: 3.0.*
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.security.jacc
       oldArtifactId: jboss-jacc-api_1.5_spec
       newGroupId: jakarta.authorization
@@ -599,6 +608,7 @@ recipeList:
       newArtifactId: angus-mail
       newVersion: "2.0.x"
 
+  - org.openrewrite.java.migrate.jakarta.JavaxAuthorizationMigrationToJakartaAuthorization
   - org.openrewrite.java.migrate.jakarta.JakartaEE10
   - org.openrewrite.hibernate.MigrateToHibernate62
   - UpgradeSpringFramework_6_2
@@ -608,8 +618,11 @@ recipeList:
   - MigrateJaxbBindingDefinitions
   - MigrationOfVariousSpecificPlugins
   - AddJakartaXMLBindAPIifMissingByJavaPackage
+  - AddJakartaWsAPIifMissingByJavaPackage
   - AddJakartaXMLBindAPIifMissingByJvnetPlugin
   - AddJakartaXMLBindAPIifMissingByCodehausPlugin
+  - RemoveCompilerPluginProvidingJavaxImplementation
+  - MigrationProjectSpecificSpecials
 #  - org.openrewrite.maven.RemoveRedundantDependencyVersions:
 #      groupPattern: "*"
 #      artifactPattern: "*"
@@ -751,13 +764,23 @@ recipeList:
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: AddJakartaXMLBindAPIifMissingByJavaPackage
-displayName: Adds the jakarta.xml.bind-api dependency only if it is not already present in the pom.xml file.
+displayName: Adds the jakarta.xml.bind-api dependency
 recipeList:
   - org.openrewrite.maven.AddDependency:
       groupId: jakarta.xml.bind
       artifactId: jakarta.xml.bind-api
       version: 4.0.*
       onlyIfUsing: "javax.xml.bind.**.*"
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: AddJakartaWsAPIifMissingByJavaPackage
+displayName: Adds the jboss-jakarta-xml-ws-api_4.0_spec dependency      
+recipeList:
+  - org.openrewrite.maven.AddDependency:
+      groupId: org.jboss.spec.jakarta.xml.ws
+      artifactId: jboss-jakarta-xml-ws-api_4.0_spec
+      version: 4.0.*
+      onlyIfUsing: "javax.jws.WebService"
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
@@ -773,6 +796,23 @@ recipeList:
       groupId: jakarta.xml.bind
       artifactId: jakarta.xml.bind-api
       version: 4.0.*
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: RemoveCompilerPluginProvidingJavaxImplementation
+displayName: Remove Maven Compiler Plugin for javax Implementation
+description: >-
+  Removes the maven-compiler-plugin when it is used to provide the javax implementation via the JDK instead of using explicit dependencies.
+preconditions:
+  # Match plugins without configuration
+  - org.openrewrite.xml.search.FindTags:
+      xPath: "/project/build/plugins/plugin[artifactId='maven-compiler-plugin' and not(configuration)]"
+  # Match plugins with configuration containing release
+  - org.openrewrite.xml.search.FindTags:
+      xPath: "/project/build/plugins/plugin[artifactId='maven-compiler-plugin' and configuration/release]"
+recipeList:
+  - org.openrewrite.maven.RemovePlugin:
+      groupId: org.apache.maven.plugins
+      artifactId: maven-compiler-plugin
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: AddJakartaXMLBindAPIifMissingByJvnetPlugin
@@ -810,3 +850,20 @@ recipeList:
       pluginArtifactId: ejb-maven-plugin
       groupId: jakarta.ejb
       artifactId: jakarta.ejb-api
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: MigrationProjectSpecificSpecials
+displayName: Migration of Various Project specific Specials
+recipeList:
+  - org.openrewrite.maven.RemoveExclusion:
+      groupId: '*'
+      artifactId: '*'
+      exclusionGroupId: org.slf4j
+      exclusionArtifactId: slf4j-api
+  - org.openrewrite.java.logging.slf4j.Log4jToSlf4j
+  - org.openrewrite.xml.AddOrUpdateChildTag:
+          parentXPath: "/project/build/plugins/plugin[artifactId='jsonschema2pojo-maven-plugin']/configuration"
+          newChildTag: "<q>true</useJakartaValidation>"
+          replaceExisting: true
+
