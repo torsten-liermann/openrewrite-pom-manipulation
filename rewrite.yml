@@ -871,4 +871,8 @@ recipeList:
           parentXPath: "/project/build/plugins/plugin[artifactId='jsonschema2pojo-maven-plugin']/configuration"
           newChildTag: "<q>true</useJakartaValidation>"
           replaceExisting: true
-
+# Version 2.x of PDFBox is based on javax, so migrate to the next major version.
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.apache.pdfbox
+        artifactId: '*'
+        newVersion: 3.0.x
