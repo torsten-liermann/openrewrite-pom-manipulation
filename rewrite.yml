@@ -780,7 +780,12 @@ recipeList:
       groupId: org.jboss.spec.jakarta.xml.ws
       artifactId: jboss-jakarta-xml-ws-api_4.0_spec
       version: 4.0.*
-      onlyIfUsing: "javax.jws.WebService"
+      onlyIfUsing: "javax.jws.*"
+  - org.openrewrite.maven.AddDependency:
+      groupId: org.jboss.spec.jakarta.xml.ws
+      artifactId: jboss-jakarta-xml-ws-api_4.0_spec
+      version: 4.0.*
+      onlyIfUsing: "javax.xml.ws.*"
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
