@@ -880,3 +880,8 @@ recipeList:
         groupId: org.apache.pdfbox
         artifactId: pdfbox-io
         version: 3.0.x
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+        oldGroupId: org.slf4j
+        oldArtifactId: slf4j-log4j12
+        newArtifactId: slf4j-reload4j
+        newVersion: 1.7.*
