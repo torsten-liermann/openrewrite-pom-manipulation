@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
+    <persistence-unit name="TestPU">
+        <properties>
+            <property name="hibernate.ejb.metamodel.population" value="enabled"/>
+            <property name="hibernate.ejb.cfgfile" value="hibernate.cfg.xml"/>
+            <property name="hibernate.ejb.xml_files" value="orm.xml"/>
+            <property name="hibernate.hbmxml.files" value="mappings.hbm.xml"/>
+            <property name="hibernate.ejb.loaded.classes" value="com.example.Entity"/>
+            <property name="hibernate.ejb.persistenceUnitName" value="TestPU"/>
+            <property name="hibernate.ejb.discard_pc_on_close" value="true"/>
+            <property name="hibernate.ejb.entitymanager_factory_name" value="myFactory"/>
+            <property name="hibernate.ejb.session_factory_observer" value="observer"/>
+            <property name="hibernate.ejb.identifier_generator_strategy_provider" value="provider"/>
+            <property name="hibernate.ejb.classcache.myCache" value="someValue"/>
+            <property name="hibernate.ejb.collectioncache.myCache" value="someValue"/>
+            <property name="hibernate.ejb.event.myEvent" value="someValue"/>
+        </properties>
+    </persistence-unit>
+</persistence>

@@ -611,6 +611,7 @@ recipeList:
   - org.openrewrite.java.migrate.jakarta.JavaxAuthorizationMigrationToJakartaAuthorization
   - org.openrewrite.java.migrate.jakarta.JakartaEE10
   - org.openrewrite.hibernate.MigrateToHibernate62
+  - Hibernate6PersistenceUnitPropertyRenames
   - UpgradeSpringFramework_6_2
   - SpringBatch4To5_2Migration
   - MigrateJaxBPlugins
@@ -855,6 +856,74 @@ recipeList:
       pluginArtifactId: ejb-maven-plugin
       groupId: jakarta.ejb
       artifactId: jakarta.ejb-api
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: Hibernate6PersistenceUnitPropertyRenames
+displayName: "Hibernate Configuration Property Renames for persistence.xml"
+description: >-
+    This recipe migrates deprecated Hibernate property names in persistence.xml files according to the
+      changes in Hibernate 6.0. It targets XML files defining a persistence unit.
+preconditions:
+    - org.openrewrite.FindSourceFiles:
+          filePattern: "**/*.xml"
+    - org.openrewrite.xml.search.FindTags:
+          # This precondition checks for the existence of a persistence-unit element.
+          # Using local-name() makes the check independent of any namespace.
+          xPath: "//persistence-unit/properties"
+recipeList:
+    # Single property renames
+    - org.openrewrite.text.FindAndReplace:
+          find: "hibernate\\.ejb\\.metamodel\\.population"
+          replace: "hibernate.jpa.metamodel.population"
+          regex: true
+    - org.openrewrite.text.FindAndReplace:
+          find: "hibernate\\.ejb\\.cfgfile"
+          replace: "hibernate.cfg_xml_file"
+          regex: true
+    - org.openrewrite.text.FindAndReplace:
+          find: "hibernate\\.ejb\\.xml_files"
+          replace: "hibernate.orm_xml_files"
+          regex: true
+    - org.openrewrite.text.FindAndReplace:
+          find: "hibernate\\.hbmxml\\.files"
+          replace: "hibernate.hbm_xml_files"
+          regex: true
+    - org.openrewrite.text.FindAndReplace:
+          find: "hibernate\\.ejb\\.loaded\\.classes"
+          replace: "hibernate.loaded_classes"
+          regex: true
+    - org.openrewrite.text.FindAndReplace:
+          find: "hibernate\\.ejb\\.persistenceUnitName"
+          replace: "hibernate.persistenceUnitName"
+          regex: true
+    - org.openrewrite.text.FindAndReplace:
+          find: "hibernate\\.ejb\\.discard_pc_on_close"
+          replace: "hibernate.discard_pc_on_close"
+          regex: true
+    - org.openrewrite.text.FindAndReplace:
+          find: "hibernate\\.ejb\\.entitymanager_factory_name"
+          replace: "hibernate.session_factory_name"
+          regex: true
+    - org.openrewrite.text.FindAndReplace:
+          find: "hibernate\\.ejb\\.session_factory_observer"
+          replace: "hibernate.session_factory_observer"
+          regex: true
+    - org.openrewrite.text.FindAndReplace:
+          find: "hibernate\\.ejb\\.identifier_generator_strategy_provider"
+          replace: "hibernate.identifier_generator_strategy_provider"
+          regex: true
+    - org.openrewrite.text.FindAndReplace:
+          find: "hibernate\\.ejb\\.classcache"
+          replace: "hibernate.classcache"
+          regex: true
+    - org.openrewrite.text.FindAndReplace:
+          find: "hibernate\\.ejb\\.collectioncache"
+          replace: "hibernate.collectioncache"
+          regex: true
+    - org.openrewrite.text.FindAndReplace:
+          find: "hibernate\\.ejb\\.event"
+          replace: "hibernate.event"
+          regex: true
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
@@ -885,3 +954,8 @@ recipeList:
         oldArtifactId: slf4j-log4j12
         newArtifactId: slf4j-reload4j
         newVersion: 1.7.*
+
+# TODO
+# javax => jakarta ins Strings wie z.B. String STARTUP_ANNOTATION_CLASS_NAME = "javax.ejb.Startup";
+# persistence.xml
+#   <property name="hibernate.ejb.interceptor" value="...."/> => <property name="hibernate.session_factory.interceptor" value="....."/>
