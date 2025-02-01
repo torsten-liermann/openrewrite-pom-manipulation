@@ -15,6 +15,7 @@
             <property name="hibernate.ejb.classcache.myCache" value="someValue"/>
             <property name="hibernate.ejb.collectioncache.myCache" value="someValue"/>
             <property name="hibernate.ejb.event.myEvent" value="someValue"/>
+            <property name="hibernate.ejb.interceptor" value="someClass"/>
         </properties>
     </persistence-unit>
 </persistence>

@@ -924,6 +924,10 @@ recipeList:
           find: "hibernate\\.ejb\\.event"
           replace: "hibernate.event"
           regex: true
+    - org.openrewrite.text.FindAndReplace:
+          find: "hibernate\\.ejb\\.interceptor"
+          replace: "hibernate.session_factory.interceptor"
+          regex: true
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
@@ -957,5 +961,3 @@ recipeList:
 
 # TODO
 # javax => jakarta ins Strings wie z.B. String STARTUP_ANNOTATION_CLASS_NAME = "javax.ejb.Startup";
-# persistence.xml
-#   <property name="hibernate.ejb.interceptor" value="...."/> => <property name="hibernate.session_factory.interceptor" value="....."/>
