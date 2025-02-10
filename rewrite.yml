@@ -624,6 +624,8 @@ recipeList:
   - AddJakartaXMLBindAPIifMissingByCodehausPlugin
   - RemoveCompilerPluginProvidingJavaxImplementation
   - MigrationProjectSpecificSpecials
+  - MigrationCDIUnit
+  - MigrateSpecialWsXML
 #  - org.openrewrite.maven.RemoveRedundantDependencyVersions:
 #      groupPattern: "*"
 #      artifactPattern: "*"
@@ -761,7 +763,15 @@ recipeList:
       newValue: "http://java.sun.com/xml/ns/jaxb/xjc"
       newVersion: "3.0"
       searchAllNamespaces: true
-
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: MigrateSpecialWsXML
+displayName: Migrate Special Ws XML
+recipeList:
+  - org.openrewrite.xml.ChangeNamespaceValue:
+        oldValue: "http://java.sun.com/xml/ns/javaee"
+        newValue: "https://jakarta.ee/xml/ns/jakartaee"
+        searchAllNamespaces: true
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: AddJakartaXMLBindAPIifMissingByJavaPackage
@@ -958,6 +968,30 @@ recipeList:
         oldArtifactId: slf4j-log4j12
         newArtifactId: slf4j-reload4j
         newVersion: 1.7.*
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: MigrationCDIUnit
+displayName: Migration CDI
+recipeList:
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: org.jglue.cdi-unit
+      oldArtifactId: cdi-unit
+      newGroupId: io.github.cdi-unit
+      newVersion: 5.0.0-EA7
+  - org.openrewrite.maven.RemoveDependency:
+        groupId: io.github.classgraph
+        artifactId: classgraph
+        scope: test
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.jglue.cdiunit.CdiRunner
+        newFullyQualifiedTypeName: io.github.cdiunit.junit4.CdiRunner
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: org.jglue.cdiunit
+      newPackageName: io.github.cdiunit
+  - org.openrewrite.java.ChangePackage:
+        oldPackageName: javax.enterprise.inject
+        newPackageName: jakarta.enterprise.inject
 
 # TODO
 # javax => jakarta ins Strings wie z.B. String STARTUP_ANNOTATION_CLASS_NAME = "javax.ejb.Startup";

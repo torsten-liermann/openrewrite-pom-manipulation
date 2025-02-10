@@ -33,6 +33,8 @@
     </repositories>
 
     <properties>
+        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
         <version.spring-batch>4.3.5</version.spring-batch>
         <version.spring>5.3.18</version.spring>
     </properties>
@@ -279,7 +281,11 @@
                 <artifactId>spring-jdbc</artifactId>
                 <version>${version.spring}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.jglue.cdi-unit</groupId>
+                <artifactId>cdi-unit</artifactId>
+                <version>4.1.0</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
