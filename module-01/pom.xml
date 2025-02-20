@@ -341,6 +341,152 @@
             <artifactId>cdi-unit</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-core-impl</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-api</artifactId>
+            <version>3.1.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-spi</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.weld.se</groupId>
+            <artifactId>weld-se-core</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.weld.se</groupId>
+            <artifactId>weld-se-tests</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.weld.se</groupId>
+            <artifactId>weld-se-shaded</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.weld.environment</groupId>
+            <artifactId>weld-environment-common</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-core-jsf</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.weld.servlet</groupId>
+            <artifactId>weld-servlet-core</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.weld.servlet</groupId>
+            <artifactId>weld-servlet-shaded</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.weld.servlet</groupId>
+            <artifactId>weld-servlet-test-tomcat</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.weld.servlet</groupId>
+            <artifactId>weld-servlet-test-base</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.weld.probe</groupId>
+            <artifactId>weld-probe-core</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.weld.probe</groupId>
+            <artifactId>weld-probe-tests</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.weld.probe</groupId>
+            <artifactId>weld-probe-integration-tests</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.weld.module</groupId>
+            <artifactId>weld-ejb</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.weld.module</groupId>
+            <artifactId>weld-jsf</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.weld.module</groupId>
+            <artifactId>weld-jta</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.weld.module</groupId>
+            <artifactId>weld-web</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-jboss-runner-tck</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-lite-extension-translator</artifactId>
+            <version>3.1.8.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-junit5</artifactId>
+            <version>3.1.8.Final</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-junit4</artifactId>
+            <version>3.1.8.Final</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-spock</artifactId>
+            <version>3.1.8.Final</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-core-test-arquillian</artifactId>
+            <version>3.1.8.Final</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-core-test-common</artifactId>
+            <version>3.1.8.Final</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
