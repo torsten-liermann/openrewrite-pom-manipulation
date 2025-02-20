@@ -612,6 +612,7 @@ recipeList:
   - org.openrewrite.java.migrate.jakarta.JakartaEE10
   - org.openrewrite.hibernate.MigrateToHibernate62
   - Hibernate6PersistenceUnitPropertyRenames
+#  - HibernateToStandardBasicTypes -- noch nicht fertig.
   - UpgradeSpringFramework_6_2
   - SpringBatch4To5_2Migration
   - MigrateJaxBPlugins
@@ -626,6 +627,7 @@ recipeList:
   - MigrationProjectSpecificSpecials
   - MigrationCDIUnit
   - MigrateSpecialWsXML
+  - MigrateWeldDepsToEAP8
 #  - org.openrewrite.maven.RemoveRedundantDependencyVersions:
 #      groupPattern: "*"
 #      artifactPattern: "*"
@@ -992,6 +994,254 @@ recipeList:
   - org.openrewrite.java.ChangePackage:
         oldPackageName: javax.enterprise.inject
         newPackageName: jakarta.enterprise.inject
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: MigrateWeldDepsToEAP8
+displayName: Migrate Weld dependencies from JBoss EAP 7.5 to 8.0
+description: Upgrades Weld (CDI) dependencies to versions compatible with JBoss EAP 8.0
+recipeList:
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld
+        artifactId: weld-api-bom
+        newVersion: 5.x
+        overrideManagedVersion: true
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld
+        artifactId: weld-core-bom
+        newVersion: 5.x
+        overrideManagedVersion: true
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld
+        artifactId: weld-core-impl
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld
+        artifactId: weld-api
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld
+        artifactId: weld-spi
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld.se
+        artifactId: weld-se-core
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld.se
+        artifactId: weld-se-tests
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld.se
+        artifactId: weld-se-shaded
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld.environment
+        artifactId: weld-environment-common
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld.servlet
+        artifactId: weld-servlet-core
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld.servlet
+        artifactId: weld-servlet-shaded
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld.servlet
+        artifactId: weld-servlet-test-tomcat
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld.servlet
+        artifactId: weld-servlet-test-base
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld.probe
+        artifactId: weld-probe-core
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld.probe
+        artifactId: weld-probe-tests
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld.probe
+        artifactId: weld-probe-core
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld.module
+        artifactId: weld-ejb
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld.module
+        artifactId: weld-jsf
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld.module
+        artifactId: weld-jta
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld.module
+        artifactId: weld-web
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld
+        artifactId: weld-jboss-runner-tck
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld
+        artifactId: weld-lite-extension-translator
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld
+        artifactId: weld-junit5
+        newVersion: 4.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld
+        artifactId: weld-junit4
+        newVersion: 4.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld
+        artifactId: weld-spock
+        newVersion: 4.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld
+        artifactId: weld-core-test-arquillian
+        newVersion: 5.x
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+        groupId: org.jboss.weld
+        artifactId: weld-core-test-common
+        newVersion: 5.x
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: HibernateToStandardBasicTypes
+displayName: Migrate old Hibernate types to StandardBasicTypes
+description: Replace old org.hibernate.type.* usage with StandardBasicTypes.* constants
+recipeList:
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.BigDecimalType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.BIG_DECIMAL
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.BigIntegerType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.BIG_INTEGER
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.BinaryType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.BINARY
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.BlobType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.BLOB
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.BooleanType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.BOOLEAN
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.ByteType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.BYTE
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.CalendarType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.CALENDAR
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.CalendarDateType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.CALENDAR_DATE
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.CharArrayType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.CHAR_ARRAY
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.CharacterType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.CHARACTER
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.CharacterArrayType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.CHARACTER_ARRAY
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.ClassType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.CLASS
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.ClobType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.CLOB
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.CurrencyType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.CURRENCY
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.DateType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.DATE
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.DoubleType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.DOUBLE
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.FloatType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.FLOAT
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.ImageType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.IMAGE
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.IntegerType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.INTEGER
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.LocaleType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.LOCALE
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.LongType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.LONG
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.MaterializedBlobType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.MATERIALIZED_BLOB
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.MaterializedClobType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.MATERIALIZED_CLOB
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.MaterializedNClobType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.MATERIALIZED_NCLOB
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.NClobType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.NCLOB
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.StringNVarcharType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.NSTRING
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.NTextType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.NTEXT
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.NumericBooleanType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.NUMERIC_BOOLEAN
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.RowVersionType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.ROW_VERSION
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.SerializableType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.SERIALIZABLE
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.ShortType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.SHORT
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.StringType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.STRING
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.TextType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.TEXT
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.TimeType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.TIME
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.TimestampType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.TIMESTAMP
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.TimeZoneType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.TIMEZONE
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.TrueFalseType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.TRUE_FALSE
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.UrlType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.URL
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.UUIDBinaryType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.UUID_BINARY
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.UUIDCharType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.UUID_CHAR
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.WrapperBinaryType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.WRAPPER_BINARY
+  - org.openrewrite.java.ChangeType:
+        oldFullyQualifiedTypeName: org.hibernate.type.YesNoType
+        newFullyQualifiedTypeName: org.hibernate.type.StandardBasicTypes.YES_NO
 
 # TODO
 # javax => jakarta ins Strings wie z.B. String STARTUP_ANNOTATION_CLASS_NAME = "javax.ejb.Startup";
