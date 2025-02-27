@@ -445,6 +445,7 @@ recipeList:
       artifactId: jakarta.persistence-api
       version: 3.1.*
       onlyIfUsing: jakarta.persistence.*
+      acceptTransitive: true
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.hibernate
       oldArtifactId: hibernate-jpamodelgen
