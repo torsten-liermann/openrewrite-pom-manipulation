@@ -208,7 +208,7 @@ recipeList:
       newKey: jakarta.ejb-api.version
 
   - org.openrewrite.maven.ChangePropertyValue:
-      propertyKey: jakarta.ejb-api.version
+      key: jakarta.ejb-api.version
       newValue: 4.0.1      
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
@@ -599,7 +599,7 @@ recipeList:
       newArtifactId: jakarta.json.bind-api
       newVersion: 3.0.*
 
-- org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.glassfish
       oldArtifactId: javax.json
       newGroupId: org.glassfish
