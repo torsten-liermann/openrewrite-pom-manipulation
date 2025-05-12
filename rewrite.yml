@@ -375,12 +375,17 @@ recipeList:
   #      newGroupId: jakarta.xml.bind
   #      newArtifactId: jakarta.xml.bind-api
 
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+      groupId: org.jboss.spec.jakarta.xml.ws
+      artifactId: jboss-jakarta-xml-ws-api_4.0_spec
+      newVersion: "2.0.*"
+
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.xml.ws
       oldArtifactId: jboss-jaxws-api_2.3_spec
       newGroupId: org.jboss.spec.jakarta.xml.ws
       newArtifactId: jboss-jakarta-xml-ws-api_4.0_spec
-      newVersion: "*"
+      newVersion: "2.0.*"
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: javax.xml.ws
@@ -393,6 +398,8 @@ recipeList:
       groupId: com.sun.xml.ws
       artifactId: jaxws-rt
       newVersion: 4.0.*
+
+
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.websocket
