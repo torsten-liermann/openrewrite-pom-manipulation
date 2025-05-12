@@ -609,6 +609,17 @@ recipeList:
       newArtifactId: angus-mail
       newVersion: "2.0.x"
 
+  - org.openrewrite.maven.ChangeDependencyClassifier:
+      groupId: org.primefaces
+      artifactId: primefaces
+      newClassifier: jakarta
+      changeManagedDependency: true
+  - org.openrewrite.maven.ChangeDependencyClassifier:
+      groupId: org.primefaces.extensions
+      artifactId: primefaces-extensions
+      newClassifier: jakarta
+      changeManagedDependency: true
+
   - org.openrewrite.java.migrate.jakarta.JavaxAuthorizationMigrationToJakartaAuthorization
   - org.openrewrite.java.migrate.jakarta.JakartaEE10
   - org.openrewrite.hibernate.MigrateToHibernate62
