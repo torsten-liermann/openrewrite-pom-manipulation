@@ -203,6 +203,14 @@ recipeList:
       newArtifactId: jakarta.ejb-api
       newVersion: 4.0.*
 
+  - org.openrewrite.maven.RenamePropertyKey:
+      oldKey: javax.ejb-api.version
+      newKey: jakarta.ejb-api.version
+
+  - org.openrewrite.maven.ChangePropertyValue:
+      propertyKey: jakarta.ejb-api.version
+      newValue: 4.0.1      
+
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.el
       oldArtifactId: jboss-el-api_3.0_spec
