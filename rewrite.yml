@@ -592,6 +592,13 @@ recipeList:
       newArtifactId: jakarta.json.bind-api
       newVersion: 3.0.*
 
+- org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: org.glassfish
+      oldArtifactId: javax.json
+      newGroupId: org.glassfish
+      newArtifactId: jakarta.json
+      newVersion: 2.0.*
+
   # In Jakarta EE 10, the jsf-facelets artifact from the
   # com.sun.facelets group is no longer used, as Facelets has been integrated into the core of Jakarta Server Faces (JSF).
   # Therefore, you don't need to include a separate dependency for Facelets in your pom.xml. Instead, ensure that you have
