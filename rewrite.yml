@@ -343,6 +343,14 @@ recipeList:
       newVersion: 2.0.*
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.transaction
+      oldArtifactId: jta
+      newGroupId: jakarta.transaction
+      newArtifactId: jakarta.transaction-api
+      newVersion: 2.0.*
+
+
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.xml.bind
       oldArtifactId: jboss-jaxb-api_2.3_spec
       newGroupId: jakarta.xml.bind
