@@ -1003,10 +1003,12 @@ recipeList:
         groupId: org.apache.pdfbox
         artifactId: '*'
         newVersion: 3.0.x
-  - org.openrewrite.maven.AddManagedDependency:
-        groupId: org.apache.pdfbox
-        artifactId: pdfbox-io
-        version: 3.0.x
+# Recipe deactivated: It was adding the 'org.apache.pdfbox:pdfbox-io' dependency to every pom.xml unnecessarily.
+#  - org.openrewrite.maven.AddManagedDependency:
+#        groupId: org.apache.pdfbox
+#        artifactId: pdfbox-io
+#        version: 3.0.x
+#        onlyIfUsing: "org.apache.pdfbox:pdfbox*"
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
         oldGroupId: org.slf4j
         oldArtifactId: slf4j-log4j12
