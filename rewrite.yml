@@ -749,9 +749,7 @@ displayName: Migrate JAXB Schema Definitions to Jakarta EE 10
 description: >-
   This recipe updates XML schema files by changing the JAXB namespace
   to the Jakarta EE 10 namespace and setting the `jaxb:version` attribute to `3.0` for compatibility with Jakarta EE 10.
-# Temporarily commenting out this recipe due to an issue with handling parent-child relationships in multi-module Maven projects.
-# For more details, see: https://github.com/openrewrite/rewrite/issues/4948
-#preconditions:
+# preconditions:
 #  - org.openrewrite.FindSourceFiles:
 #      filePattern: '**/*.xsd'
 recipeList:
@@ -775,11 +773,9 @@ displayName: Migrate JAXB Binding Definitions to Jakarta EE 10
 description: >-
   This recipe updates JAXB binding (`.xjb`) files by changing the JAXB namespace
   to the Jakarta EE 10 namespace and setting the `version` attribute to `3.0` for compatibility with Jakarta EE 10.
-# Temporarily commenting out this recipe due to an issue with handling parent-child relationships in multi-module Maven projects.
-# For more details, see: https://github.com/openrewrite/rewrite/issues/4948
-#preconditions:
-#  - org.openrewrite.FindSourceFiles:
-#      filePattern: '**/*.xjb'
+preconditions:
+  - org.openrewrite.FindSourceFiles:
+      filePattern: '**/*.xjb'
 recipeList:
   - org.openrewrite.xml.ChangeNamespaceValue:
       oldValue: "http://java.sun.com/xml/ns/jaxb"
