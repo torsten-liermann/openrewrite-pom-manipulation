@@ -399,7 +399,10 @@ recipeList:
       artifactId: jaxws-rt
       newVersion: 4.0.*
 
-
+  - org.openrewrite.xml.ChangeNamespaceValue:
+      oldValue: "http://java.sun.com/xml/ns/jaxws"
+      newValue: "https://jakarta.ee/xml/ns/jaxws"
+      searchAllNamespaces: true
 
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.spec.javax.websocket
