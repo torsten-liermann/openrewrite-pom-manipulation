@@ -11,12 +11,12 @@ recipeList:
       oldGroupId: org.jboss.bom
       oldArtifactId: jboss-eap-jakartaee8
       newArtifactId: jboss-eap-ee
-      newVersion: 8.*
+      newVersion: 8.0.7.GA-redhat-00003
   - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
       oldGroupId: org.jboss.bom
       oldArtifactId: jboss-eap-jakartaee8-with-tools
       newArtifactId: jboss-eap-ee-with-tools
-      newVersion: 8.*
+      newVersion: 8.0.7.GA-redhat-00003
 
   # `org.jboss.spec:jboss-javaee-8.0` is not mentioned in the migration guide.
   #  At this point, we assume the use of the comprehensive BOM from EAP 8.0.
@@ -25,7 +25,7 @@ recipeList:
       oldArtifactId: jboss-javaee-8.0
       newGroupId: org.jboss.bom
       newArtifactId: jboss-eap-ee
-      newVersion: 8.*
+      newVersion: jboss-eap-ee
 
   - org.openrewrite.maven.RemoveManagedDependency:
       groupId: org.wildfly
