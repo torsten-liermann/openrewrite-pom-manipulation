@@ -25,7 +25,7 @@ recipeList:
       oldArtifactId: jboss-javaee-8.0
       newGroupId: org.jboss.bom
       newArtifactId: jboss-eap-ee
-      newVersion: jboss-eap-ee
+      newVersion: 8.0.7.GA-redhat-00003
 
   - org.openrewrite.maven.RemoveManagedDependency:
       groupId: org.wildfly
